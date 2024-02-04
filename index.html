@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quieres ser mi valentine?</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <script src="https://unpkg.com/css-doodle@0.15.3/css-doodle.min.js"></script>
+    <style>
+        .noLove {
+            z-index: -1;
+            --color: @p(#51eaea, #fffde1, #ff9d76, #FB3569);
+
+            --rule: ( 
+                :doodle {
+                    @grid: 30x1 / 18vmin;
+                    --deg: @p(-180deg, 180deg);
+                }
+
+                :container {
+                    perspective: 30vmin;
+                }
+
+                @place-cell: center;
+                @size: 100%;
+
+                box-shadow: @m2(0 0 50px var(--color));
+                background: @m100(radial-gradient(var(--color) 50%, transparent 0) @r(-20%, 120%) @r(-20%, 100%) / 1px 1px no-repeat);
+
+                will-change: transform, opacity;
+                animation: scale-up 12s linear infinite;
+                animation-delay: calc(-12s / @I * @i);
+
+                @keyframes scale-up {
+                    0%, 95.01%, 100% {
+                        transform: translateZ(0) rotate(0);
+                        opacity: 0;
+                    }
+
+                    10% {
+                        opacity: 1;
+                    }
+
+                    95% {
+                        transform: translateZ(35vmin) rotateZ(@var(--deg));
+                    }
+                })
+        }
+
+    .inLove{
+        z-index: 10;
+        --color: @p(#51eaea, #fffde1, #ff9d76, #FB3569);
+        --rule: ( :doodle {
+                    @grid: 30x1 / 18vmin;
+                    --deg: @p(-180deg, 180deg);
+                }
+
+                :container {
+                    perspective: 30vmin;
+                }
+
+                :after, :before {
+                    content: '';
+                    background: var(--color);
+                    @place-cell: @r(100%) @r(100%);
+                    @size: @r(20px);
+                    @shape: heart;
+                }
+
+                @place-cell: center;
+                @size: 100%;
+
+                box-shadow: @m2(0 0 50px var(--color));
+                background: @m100(radial-gradient(var(--color) 50%, transparent 0) @r(-20%, 120%) @r(-20%, 100%) / 1px 1px no-repeat);
+
+                will-change: transform, opacity;
+                animation: scale-up 12s linear infinite;
+                animation-delay: calc(-12s / @I * @i);
+
+                @keyframes scale-up {
+                    0%, 95.01%, 100% {
+                        transform: translateZ(0) rotate(0);
+                        opacity: 0;
+                    }
+
+                    10% {
+                        opacity: 1;
+                    }
+
+                    95% {
+                        transform: translateZ(35vmin) rotateZ(@var(--deg));
+                    }
+                })
+    }
+    </style>
+</head>
+<div class="background"><css-doodle class="noLove" use="var(--rule)"></css-doodle></div>
+<body>
+    <div class="main">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="question">¿Quieres ser mi valentine?</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="SIU">
+                <button onclick="yes()" class="yesBtn">SI</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="NOPE">
+                <button onclick="no()" class="noBtn">NO</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

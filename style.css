@@ -1,0 +1,60 @@
+html, .background{ 
+    position: fixed;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh; 
+    margin: 0;
+    background: #270F34; 
+    overflow: hidden; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    contain: content;
+    overflow: clip;
+}
+
+body{
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
+
+.noBtn {
+    background-color: #f44336;
+    position: absolute;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border-color: #510a0a;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100px;
+}
+
+.yesBtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border-color: #145214;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100px;
+}
+
+.question{
+    color: pink;
+    font-size: 60px;
+    text-align: center;
+}
+
+.amor{
+    width: 40vw;
+    height: auto;
+    position: absolute;
+    left: 30vw;
+    top: 40vh;
+}
