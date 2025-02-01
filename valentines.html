@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #ffc7f3, #f3aae3, #fb63f1);
+            color: #5a1a1a;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #scroll-container {
+            width: 100%;
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+        }
+
+        .scroll-message {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content:center;
+            align-items: center;
+            font-size: 2rem;
+            font-weight: bold;
+            scroll-snap-align: start;
+            padding: 20px;
+        }
+
+        .scroll-message img {
+            width: 300px;
+            height: auto;
+            margin-bottom: 60px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        #question-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            scroll-snap-align: start;
+            position: relative;
+        }
+
+
+
+        #buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            background-color: #ffc1c1;
+            color: #5a1a1a;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s;
+        }
+
+        #yes:hover {
+            transform: scale(1.1);
+        }
+
+        #yes:focus {
+            outline: none;
+        }
+
+        @media screen and (max-width: 828px) {
+            body {
+                font-size: 0.9rem;
+            }
+
+            button {
+                font-size: 1rem;
+                padding: 8px 16px;
+            }
+        }
+
+		.lantran-all{
+			position: fixed;
+			bottom: -5%;
+			left: 0;
+			animation:fly 10s infinite linear;
+            z-index: -1;
+		}
+
+		.lantran{bottom: 0;left: 0% !important; animation:fly 10s infinite linear; }
+		.lantran1{bottom: 0;left: 10% !important; animation:fly 20s infinite linear; }
+
+
+		@keyframes fly{
+			0%{left: 0%;bottom:-5%;}
+			50%{left: 0%;bottom:50%;}
+			100%{left: 0%;bottom:100%;}
+		}
+
+        canvas {
+        z-index: -1;
+        position: absolute;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+}
+    </style>
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <div class="container-sky">
+		<div class="lantran lantran-all">
+			<img src="http://pluspng.com/img-png/png-lotus-flower--2200.png" width="80" height="100">
+		</div>		
+		<div class="lantran1 lantran-all">
+			<img src="http://pluspng.com/img-png/png-lotus-flower--2200.png" width="40" height="50">
+		</div>
+	</div>
+    <div id="scroll-container">
+
+        <div class="scroll-message">
+            Hola amor, quiero que sepas que haces brillar mis días. <br> <br> 
+            <img src="vale1.jpg" alt="Hi Valeria">
+        </div>
+        <div class="scroll-message">
+            Cada momento a tu lado es muy especial. <br> <br> 
+            <img src="vale2.jpg" alt="Special">
+        </div>
+        <div class="scroll-message"> 
+            Y estaba pensando en preguntarte algo... <br> <br> 
+            <img src="vale3.jpg" alt="Thinking">
+        </div>
+        <div id="question-section">
+            <canvas id="heart"></canvas>
+            <h1 id="question" >¿Serías mi San Valentín?</h1>
+            <div id="buttons">
+                <button id="yes" onclick="bloomFlower()">Chi</button>
+                <button id="no" onclick="moveBtn()">Ño</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var noClicks = 0;
+        function moveBtn() {
+            const no = document.getElementById('no');
+            no.style.position = 'absolute';
+            no.style.left = Math.random() * 80 + '%';
+            no.style.top = Math.random() * 80 + '%';
+            noClicks++;
+            if (noClicks == 3) {
+                no.textContent = '¡¿Tan poquito me quieres?!';
+            }
+        }
+        function bloomFlower() {
+            //Hide buttons
+            const question = document.getElementById('question');
+            question.textContent = '¡TE AMO!';
+            const buttons = document.getElementById('buttons');
+            buttons.style.display = 'none';
+            //Animate flower
+            init();
+        }
+
+        window.requestAnimationFrame =
+        window.__requestAnimationFrame ||
+        window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        (function () {
+            return function (callback, element) {
+                var lastTime = element.__lastTime;
+                if (lastTime === undefined) {
+                    lastTime = 0;
+                }
+                var currTime = Date.now();
+                var timeToCall = Math.max(1, 33 - (currTime - lastTime));
+                window.setTimeout(callback, timeToCall);
+                element.__lastTime = currTime + timeToCall;
+            };
+        })();
+window.isDevice = (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(((navigator.userAgent || navigator.vendor || window.opera)).toLowerCase()));
+var loaded = false;
+var init = function () {
+    if (loaded) return;
+    loaded = true;
+    var koef = 1;
+    var canvas = document.getElementById('heart');
+    var ctx = canvas.getContext('2d');
+    var width = canvas.width = koef * innerWidth;
+    var height = canvas.height = koef * innerHeight;
+    var rand = Math.random;
+    ctx.fillStyle = "rgba(0,0,0,0)";
+    ctx.fillRect(0, 0, width, height);
+
+    var heartPosition = function (rad) {
+        //return [Math.sin(rad), Math.cos(rad)];
+        return [Math.pow(Math.sin(rad), 3), -(15 * Math.cos(rad) - 5 * Math.cos(2 * rad) - 2 * Math.cos(3 * rad) - Math.cos(4 * rad))];
+    };
+    var scaleAndTranslate = function (pos, sx, sy, dx, dy) {
+        return [dx + pos[0] * sx, dy + pos[1] * sy];
+    };
+
+    window.addEventListener('resize', function () {
+        width = canvas.width = koef * innerWidth;
+        height = canvas.height = koef * innerHeight;
+        ctx.fillStyle = "rgba(0,0,255,1)";
+        ctx.fillRect(0, 0, width, height);
+    });
+
+    var traceCount = mobile ? 20 : 50;
+    var pointsOrigin = [];
+    var i;
+    var dr = mobile ? 0.3 : 0.1;
+    for (i = 0; i < Math.PI * 2; i += dr) pointsOrigin.push(scaleAndTranslate(heartPosition(i), 210, 13, 0, 0));
+    for (i = 0; i < Math.PI * 2; i += dr) pointsOrigin.push(scaleAndTranslate(heartPosition(i), 150, 9, 0, 0));
+    for (i = 0; i < Math.PI * 2; i += dr) pointsOrigin.push(scaleAndTranslate(heartPosition(i), 90, 5, 0, 0));
+    var heartPointsCount = pointsOrigin.length;
+
+    var targetPoints = [];
+    var pulse = function (kx, ky) {
+        for (i = 0; i < pointsOrigin.length; i++) {
+            targetPoints[i] = [];
+            targetPoints[i][0] = kx * pointsOrigin[i][0] + width / 2;
+            targetPoints[i][1] = ky * pointsOrigin[i][1] + height / 2;
+        }
+    };
+
+    var e = [];
+    for (i = 0; i < heartPointsCount; i++) {
+        var x = rand() * width;
+        var y = rand() * height;
+        e[i] = {
+            vx: 0,
+            vy: 0,
+            R: 2,
+            speed: rand() + 5,
+            q: ~~(rand() * heartPointsCount),
+            D: 2 * (i % 2) - 1,
+            force: 0.2 * rand() + 0.7,
+            f: "hsla(0," + ~~(40 * rand() + 60) + "%," + ~~(60 * rand() + 20) + "%,.3)",
+            trace: []
+        };
+        for (var k = 0; k < traceCount; k++) e[i].trace[k] = {x: x, y: y};
+    }
+
+    var config = {
+        traceK: 0.4,
+        timeDelta: 0.01
+    };
+
+    var time = 0;
+    var loop = function () {
+        var n = -Math.cos(time);
+        pulse((1 + n) * .5, (1 + n) * .5);
+        time += ((Math.sin(time)) < 0 ? 9 : (n > 0.8) ? .2 : 1) * config.timeDelta;
+        ctx.fillStyle = "rgba(0,0,0,0)";
+        ctx.fillRect(0, 0, width, height);
+        for (i = e.length; i--;) {
+            var u = e[i];
+            var q = targetPoints[u.q];
+            var dx = u.trace[0].x - q[0];
+            var dy = u.trace[0].y - q[1];
+            var length = Math.sqrt(dx * dx + dy * dy);
+            if (10 > length) {
+                if (0.95 < rand()) {
+                    u.q = ~~(rand() * heartPointsCount);
+                }
+                else {
+                    if (0.99 < rand()) {
+                        u.D *= -1;
+                    }
+                    u.q += u.D;
+                    u.q %= heartPointsCount;
+                    if (0 > u.q) {
+                        u.q += heartPointsCount;
+                    }
+                }
+            }
+            u.vx += -dx / length * u.speed;
+            u.vy += -dy / length * u.speed;
+            u.trace[0].x += u.vx;
+            u.trace[0].y += u.vy;
+            u.vx *= u.force;
+            u.vy *= u.force;
+            for (k = 0; k < u.trace.length - 1;) {
+                var T = u.trace[k];
+                var N = u.trace[++k];
+                N.x -= config.traceK * (N.x - T.x);
+                N.y -= config.traceK * (N.y - T.y);
+            }
+            ctx.fillStyle = u.f;
+            for (k = 0; k < u.trace.length; k++) {
+                ctx.fillRect(u.trace[k].x, u.trace[k].y, 1, 1);
+            }
+        }
+        ctx.fillStyle = "rgba(255,255,255,1)";
+        for (i = u.trace.length; i--;) ctx.fillRect(targetPoints[i][0], targetPoints[i][1], 2, 2);
+
+        window.requestAnimationFrame(loop, canvas);
+    };
+    loop();
+};
+
+    var previousLeft = 10;
+	var min = 10,max=20;
+	for(var i=2;i<20;i++)
+	{
+		var anim = getRandom(min,max);
+		var image = 'http://pluspng.com/img-png/png-lotus-flower--2200.png';
+		var width = "80";
+		var height = "100";
+		var perc;
+		if(i%2==0)
+		{
+			image = 'http://pluspng.com/img-png/png-lotus-flower--2200.png';
+			width = "40";
+			height = "50";
+			
+		} 
+		previousLeft = parseInt(previousLeft) + 10;
+			if(previousLeft > 100)
+			{
+				previousLeft =0;
+			}
+			perc = previousLeft
+		var html = '<div class="lantran'+i+' lantran-all"><img src="'+image+'" width="'+width+'" height="'+height+'"></div>';
+		$(".container-sky").append(html);
+		var elements = document.getElementsByClassName('lantran'+i);
+		element = elements[ 0 ];
+        element.setAttribute('style','left:'+perc+'% !important;animation:fly '+anim+'s infinite linear;');
+		}
+
+		function getRandom(min,max)
+		{
+			
+			min = Math.ceil(min);
+    		max = Math.floor(max);
+    		 return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+    </script>
+</body>
+</html>
