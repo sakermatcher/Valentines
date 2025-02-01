@@ -201,6 +201,7 @@ var loaded = false;
 var init = function () {
     if (loaded) return;
     loaded = true;
+    var mobile = window.isDevice;
     var koef = 1;
     var canvas = document.getElementById('heart');
     var ctx = canvas.getContext('2d');
